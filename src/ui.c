@@ -1,10 +1,12 @@
 #include <stdio.h>
 
-char sentence[100];
 
 void main()
 {
+  char c;
   printf("*");
-  fgets(sentence,100,stdin);
-  printf(sentence);
+  while(c = getchar() != '\n')
+  {
+    putchar(c);
+  }
 }
