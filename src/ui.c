@@ -7,21 +7,18 @@ void main()
   int count = 0;
   char word[limit];
   char c;
+  int boolean = 1;
   printf("*");
-    while((c = getchar()) != '\n')
-      { 
-	word[count] = putchar(c);
-
-   
-	if( space_char(c) )
-	  {printf("This is a space\n");}
-
-	if(non_space_char(c) )
-	  {printf(":This is not a space\n");}
-
-	count++;
-	
-      }
-    printf("Printing Word: %s",word);
-    printf("\n");
+  while (boolean){
+    
+    while((c = getchar()) != '\n') {
+      word[count] = putchar(c);
+      if(c == '1')
+	{boolean = 0;}//shuts off while loop
+      count++;
+    }
+    word_start(word);
+    printf("\n*");
+    count = 0;//reset word
+  }
 }
