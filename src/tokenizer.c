@@ -8,6 +8,7 @@ int space_char(char c){
 }
 
 int non_space_char(char c){
+  printf("\n non_space_char: %c",c);
   if(c == ' ' || c == '\t' || c == '\n')
     {return 0;}
   return 1;
@@ -24,19 +25,30 @@ char *word_start(char *str){ //does not increment through word
 }
 //str is assumed to be pointing to a non space char
 char *word_end(char *str){
+  str = word_start(str);
+  int number=0;
   while(non_space_char(*str))
-    {str++;}
+    {
+      printf("\n Incrementing through word: %c",*str);
+      str++;
+      number++;
+      printf("number: %d",number);
+    }
   return str;
 }
 
 int count_words(char *str){
   int count = 0;
-  while(*str != '\n')
+  /*
+  if(word_start(str)=='\n') //will handle empty cases
     {
-      word_start(str);
-      count++;
-      word_end(str);
-      
+      return 0;
+    }
+  */
+  while(*str != '\n')//looks for end of string
+    {
+      str = word_end(str);//finds the end of a word and points a pointer at it 
+      count++; //counter
     }
   return count;
 }

@@ -5,7 +5,7 @@
 void main()
 {
   int count = 0;
-  char word[limit];
+  char word[limit] ="";
   char c;
   int boolean = 1;
   printf("*");
@@ -17,7 +17,8 @@ void main()
 	{boolean = 0;}//shuts off while loop
       count++;
     }
-    word_start(word);
+    word[count]='\n'; //end of getchar notification
+    printf("%d",count_words(word));
     printf("\n*");
     count = 0;//reset word
   }
