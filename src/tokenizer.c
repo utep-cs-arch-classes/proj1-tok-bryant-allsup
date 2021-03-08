@@ -52,3 +52,53 @@ int count_words(char *str){
     }
   return count;
 }
+
+char *copy_str(char *inStr, short len)
+{
+  char *copy = (char*) malloc((len+1)*sizeof(char*));
+    int counter = 0;
+  while(counter<len)
+    {
+      copy[counter] =inStr[counter];
+      counter++;
+    }
+  copy[counter]='\0';
+  return copy;
+}
+
+char **tokenize(char *str)
+{
+  char **tokenized= (char**) malloc((count_words(str)+1)*sizeof(char**));
+  char *begin, *end;
+  int length = 0;
+  begin = word_start(str);
+  int read = 0;
+  while(read<=count_words(str))
+    {
+      end = word_end(begin);
+      length = end-begin;
+      tokenized[read] = copy_str(begin,length);
+      begin = word_start(end);
+
+      if(read==count_words(str))
+	{tokenized[read]="\0";}
+      
+      read++;
+    }
+  return tokenized;
+}
+void print_token(char **tokens)
+{
+  for(int t=0; tokens[t]!="\0";t++)
+    {printf("Print tokens: %s \n",tokens[t]);}
+}
+void free_tokens(char **tokens)
+{
+  int t=0;
+  while(tokens[t])//Free individual words
+    {
+      free(tokens[t]);
+      t++;
+    }
+  free(tokens);//Free all tokens
+}
