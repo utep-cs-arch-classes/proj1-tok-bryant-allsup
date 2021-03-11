@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "tokenizer.h"
 
 int space_char(char c){ 
@@ -8,7 +7,6 @@ int space_char(char c){
 }
 
 int non_space_char(char c){
-  printf("\n non_space_char: %c",c);
   if(c == ' ' || c == '\t' || c == '\n')
     {return 0;}
   return 1;
@@ -19,7 +17,6 @@ char *word_start(char *str){ //does not increment through word
   while(space_char(*str)){ //no longer space
     str++; //increment pointer
     }
-  printf("\n This is word start: %c", *str);
   return str;
     
 }
@@ -29,22 +26,14 @@ char *word_end(char *str){
   int number=0;
   while(non_space_char(*str))
     {
-      printf("\n Incrementing through word: %c",*str);
       str++;
       number++;
-      printf("number: %d",number);
     }
   return str;
 }
 
 int count_words(char *str){
   int count = 0;
-  /*
-  if(word_start(str)=='\n') //will handle empty cases
-    {
-      return 0;
-    }
-  */
   while(*str != '\n')//looks for end of string
     {
       str = word_end(str);//finds the end of a word and points a pointer at it 
@@ -55,7 +44,7 @@ int count_words(char *str){
 
 char *copy_str(char *inStr, short len)
 {
-  char *copy = (char*) malloc((len+1)*sizeof(char*));
+  char *copy =  malloc((len+1)*sizeof(char));
     int counter = 0;
   while(counter<len)
     {
@@ -68,7 +57,8 @@ char *copy_str(char *inStr, short len)
 
 char **tokenize(char *str)
 {
-  char **tokenized= (char**) malloc((count_words(str)+1)*sizeof(char**));
+  int count = count_words(str)
+  char **tokenized= (char**)malloc((count+1) * sizeof(char*));
   char *begin, *end;
   int length = 0;
   begin = word_start(str);
@@ -88,13 +78,13 @@ char **tokenize(char *str)
   return tokenized;
 }
 void print_token(char **tokens)
-{
+{printf("\n");
   for(int t=0; tokens[t]!="\0";t++)
     {printf("Print tokens: %s \n",tokens[t]);}
 }
 void free_tokens(char **tokens)
 {
-  int t=0;
+  int t =0;
   while(tokens[t])//Free individual words
     {
       free(tokens[t]);
