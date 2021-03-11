@@ -46,4 +46,5 @@ void main()
     printf("\n*");
     count = 0;//reset word
   }
+  free_history(list);
 }
