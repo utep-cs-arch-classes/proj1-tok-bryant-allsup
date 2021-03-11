@@ -44,8 +44,8 @@ int count_words(char *str){
 
 char *copy_str(char *inStr, short len)
 {
-  char *copy =  malloc((len+1)*sizeof(char));
-    int counter = 0;
+  char *copy =  (char*)malloc((len+1)*sizeof(char));
+  int counter = 0;
   while(counter<len)
     {
       copy[counter] =inStr[counter];
@@ -57,7 +57,7 @@ char *copy_str(char *inStr, short len)
 
 char **tokenize(char *str)
 {
-  int count = count_words(str)
+  int count = count_words(str);
   char **tokenized= (char**)malloc((count+1) * sizeof(char*));
   char *begin, *end;
   int length = 0;

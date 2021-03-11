@@ -1,11 +1,12 @@
 #include "history.h"
 
 List *init_history(){
+  List *list = malloc(sizeof(List));
   Item *head = malloc(sizeof(Item));
   head->id=0;
   head->next=NULL;
-  head->str="First";
-  List *list = malloc(sizeof(List));
+  head->str=" ";
+  
   list->root=head;
   return list;
 }
@@ -28,12 +29,15 @@ void add_history(List *list, char *str){
 char *get_history(List *list, int id){
   Item *current = list->root;
   if(id==0)
-    {return current->str;}
+    {return "Blank";}
 
   char *NS = {"No String"}; 
   int number = current->id;
   while(number<id)
     {
+      if(current->next==NULL)
+	{return "not found";}
+      
       current=current->next;
       int number = current->id;
       printf("%d\n",number);
