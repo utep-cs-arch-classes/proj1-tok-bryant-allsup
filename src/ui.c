@@ -41,7 +41,7 @@ void main()
       char **tokens = tokenize(word);
       print_token(tokens);
       print_history(list);
-      //free_tokens(tokens);
+      free_tokens(tokens);
     }
     printf("\n*");
     count = 0;//reset word

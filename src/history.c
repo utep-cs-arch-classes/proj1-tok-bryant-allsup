@@ -28,15 +28,13 @@ void add_history(List *list, char *str){
 
 char *get_history(List *list, int id){
   Item *current = list->root;
-  if(id==0)
-    {return "Blank";}
 
   char *NS = {"No String"}; 
   int number = current->id;
   while(number<id)
     {
       if(current->next==NULL)
-	{return "not found";}
+	{return "Blank";}
       
       current=current->next;
       int number = current->id;

@@ -58,7 +58,7 @@ char *copy_str(char *inStr, short len)
 char **tokenize(char *str)
 {
   int count = count_words(str);
-  char **tokenized= (char**)malloc((count+1) * sizeof(char*));
+  char **tokenized= (char**)malloc((count+1)*sizeof(char*));
   char *begin, *end;
   int length = 0;
   begin = word_start(str);
@@ -87,6 +87,7 @@ void free_tokens(char **tokens)
   int t =0;
   while(tokens[t])//Free individual words
     {
+      printf("%s",tokens[t]);
       free(tokens[t]);
       t++;
     }
